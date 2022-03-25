@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const morgan = require('morgan');
 const body_parser = require("body-parser");
-const authRouter = require('./Routers/AuthRouter');
+let authRouter = require('./Routers/AuthRouter');
 const speakersRouter = require('./Routers/speakerRouter');
 const studentsRouter = require('./Routers/studentRouter');
 const eventsRouter = require('./Routers/eventsRouter');
@@ -29,7 +29,7 @@ app.use("/images", express.static(path.join(__dirname, "images")))
 // body parser
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({ extended: true }));
-
+// connectToDb();
 (async () => {
     //connect DB
     await connectToDb();
@@ -56,3 +56,5 @@ app.use((error, request, response, next) => {
     let status = error.status || 500;
     response.status(status).json({ Error: `${error}` });
 })
+
+module.exports = app;

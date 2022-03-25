@@ -4,8 +4,9 @@ const { findById } = require("../Models/speakerSchema");
 const { generateError } = require("./handleErrors");
 
 
-module.exports.validateToken = (req, res, next) => {
+exports.validateToken = (req, res, next) => {
     try {
+        console.log('test');
         if (!req.headers.authorization) throw new Error('please login')
         const user = jwt.verify(
             req.headers.authorization.split(" ")[1],

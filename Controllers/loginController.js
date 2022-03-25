@@ -31,12 +31,12 @@ exports.me_get = async (req, res, next) => {
     }
 }//get me refer to JWT
 
-
+let user = {};
 exports.postRegister = async (req, res, next) => {
     try {
         //get data from body
         const { firstName, lastName, email, password, passwordConfirm, address, personType } = req.body;
-        let user = {};
+
         if (personType == 'speaker') {
             user = Speaker({
                 firstName,
